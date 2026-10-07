@@ -1,0 +1,6 @@
+{
+  "name": "SmartSlot AI",
+  "description": "Customer-Preferred Intelligent Delivery Slot Optimization. AI schedules deliveries around customer availability with real-time feasibility analysis and smart alternative recommendations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

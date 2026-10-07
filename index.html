@@ -1,0 +1,1209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartSlot AI — Customer-Preferred Intelligent Delivery Slot Optimization</title>
+    <meta name="description" content="Choose when you're available. SmartSlot AI intelligently schedules your delivery around your time with real-time AI feasibility analysis and smart alternative recommendations." />
+    <meta property="og:title" content="SmartSlot AI — Customer-Preferred Delivery Slot Optimization" />
+    <meta property="og:description" content="Choose when you're available. SmartSlot AI intelligently schedules delivery around your time." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="./style.css" />
+    <!-- Chart.js for Logistics Analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="app-layout">
+      <!-- SIDEBAR NAVIGATION -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <div class="brand-badge">
+            <div class="brand-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div>
+              <div class="brand-name">SmartSlot AI</div>
+              <div class="brand-tagline">Logistics Intelligence</div>
+            </div>
+          </div>
+        </div>
+
+        <ul class="nav-links">
+          <li class="nav-item">
+            <button class="nav-btn active" data-page="landing">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+              Overview
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-btn" data-page="order">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+              Place Order
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-btn" data-page="availability">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              My Availability
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-btn" data-page="slots">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 14 14"></polyline>
+              </svg>
+              Slot Optimizer
+              <span class="nav-badge">AI</span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-btn" data-page="tracking">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="1" y="3" width="15" height="13"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+              Track Delivery
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-btn" data-page="dashboard">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+              Dashboard
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-btn" data-page="history">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+              My Orders
+            </button>
+          </li>
+        </ul>
+
+        <div class="sidebar-footer">
+          <div class="system-status">
+            <span class="status-dot"></span>
+            <span>AI Dispatch Engine v2.4 Active</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT WRAPPER -->
+      <main class="main-wrapper">
+        <!-- TOP APP BAR -->
+        <header class="top-bar">
+          <div class="top-bar-left">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Navigation">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+            </button>
+            <div class="top-breadcrumb">
+              SmartSlot AI / <span id="currentBreadcrumb">Overview</span>
+            </div>
+          </div>
+
+          <div class="top-bar-right">
+            <button class="btn-live-demo-glow" id="startLiveDemoBtn" title="Run 45-second judge-ready demonstration">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              RUN LIVE DEMO
+            </button>
+          </div>
+        </header>
+
+        <!-- PAGE VIEWS CONTAINER -->
+        <div class="page-container">
+          
+          <!-- ========================================== -->
+          <!-- STEP 1: LANDING PAGE (#landing) -->
+          <!-- ========================================== -->
+          <section id="page-landing" class="page-view active">
+            <div class="hero-section">
+              <div class="hero-pill">
+                <span>⚡ AI-POWERED LOGISTICS MVP</span>
+                <span>·</span>
+                <span>24-HR HACKATHON BUILD</span>
+              </div>
+              <h1 class="hero-title">Your Time.<br />Your Delivery.</h1>
+              <p class="hero-subtitle">
+                Choose when you're available. SmartSlot AI intelligently schedules your delivery around your time, analyzing traffic, rider capacity, and neighborhood demand.
+              </p>
+              <div class="hero-actions">
+                <button class="btn btn-primary btn-lg" onclick="window.navigateToPage('order')">
+                  Order Now
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+                <button class="btn btn-secondary btn-lg" onclick="window.startDemoFlow()">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  Try Live Demo
+                </button>
+              </div>
+            </div>
+
+            <!-- CORE PITCH PRESENTATION BANNER -->
+            <div class="pitch-banner">
+              <p class="pitch-quote">
+                "Customers shouldn't have to change their schedule for delivery. SmartSlot AI makes delivery fit the customer's schedule."
+              </p>
+              <div class="pitch-author">Core Innovation Hypothesis · SmartSlot AI Engine</div>
+            </div>
+
+            <!-- VISUAL FLOW -->
+            <div class="flow-container">
+              <div class="section-label">End-to-End System Architecture</div>
+              <div class="flow-steps-grid">
+                <div class="flow-step-card">
+                  <div class="flow-step-number">1</div>
+                  <div class="flow-step-title">Order</div>
+                  <div class="flow-step-desc">Pick items and verify dropoff coordinates</div>
+                </div>
+                <div class="flow-step-card">
+                  <div class="flow-step-number">2</div>
+                  <div class="flow-step-title">Choose Time</div>
+                  <div class="flow-step-desc">Set your free hours (classes, office, transit)</div>
+                </div>
+                <div class="flow-step-card">
+                  <div class="flow-step-number">3</div>
+                  <div class="flow-step-title">AI Checks Feasibility</div>
+                  <div class="flow-step-desc">Analyzes load, riders, distance & real traffic</div>
+                </div>
+                <div class="flow-step-card">
+                  <div class="flow-step-number">4</div>
+                  <div class="flow-step-title">Smart Slot</div>
+                  <div class="flow-step-desc">Recommends peak alternatives to guarantee arrival</div>
+                </div>
+                <div class="flow-step-card">
+                  <div class="flow-step-number">5</div>
+                  <div class="flow-step-title">Delivery</div>
+                  <div class="flow-step-desc">Arrives on schedule while you're available</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- COMPARISON: TRADITIONAL VS SMARTSLOT AI -->
+            <div class="comparison-section">
+              <div class="compare-card traditional">
+                <span class="compare-badge">Old Paradigm</span>
+                <h3 class="compare-title">Traditional Delivery</h3>
+                <div class="compare-summary">Delivery chooses the time. Customer waits.</div>
+                <ul class="compare-points">
+                  <li>
+                    <span class="icon">✕</span>
+                    <span>Broad 9:00 AM – 9:00 PM uncertainty window</span>
+                  </li>
+                  <li>
+                    <span class="icon">✕</span>
+                    <span>Delivery arrives while you are at college or in office meetings</span>
+                  </li>
+                  <li>
+                    <span class="icon">✕</span>
+                    <span>High missed-delivery rate, re-attempts cost ₹120+ per parcel</span>
+                  </li>
+                  <li>
+                    <span class="icon">✕</span>
+                    <span>Frustrated phone calls with riders rushing between sectors</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="compare-card smartslot">
+                <span class="compare-badge">SmartSlot AI Innovation</span>
+                <h3 class="compare-title">SmartSlot AI</h3>
+                <div class="compare-summary">Customer chooses the time. AI optimizes the delivery.</div>
+                <ul class="compare-points">
+                  <li>
+                    <span class="icon" style="color: #22d3ee;">✓</span>
+                    <span>Customer defines personal availability window first</span>
+                  </li>
+                  <li>
+                    <span class="icon" style="color: #22d3ee;">✓</span>
+                    <span>AI simulates courier workload, traffic index, and routing feasibility</span>
+                  </li>
+                  <li>
+                    <span class="icon" style="color: #22d3ee;">✓</span>
+                    <span>Intelligent alternative recommendations avoid bottle-necked slots</span>
+                  </li>
+                  <li>
+                    <span class="icon" style="color: #22d3ee;">✓</span>
+                    <span>96% on-time handover rate with zero customer schedule disruptions</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- ========================================== -->
+          <!-- STEP 2: PLACE ORDER PAGE (#order) -->
+          <!-- ========================================== -->
+          <section id="page-order" class="page-view">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                  </svg>
+                  Step 1: Place Your Order
+                </h2>
+                <p class="card-subtitle">Configure your product selection and delivery destination</p>
+              </div>
+            </div>
+
+            <div class="order-layout">
+              <!-- Left: Form inputs -->
+              <div class="glass-card">
+                <div class="form-group">
+                  <label class="form-label">Select Demo Product or Enter Custom</label>
+                  <div class="product-presets-grid">
+                    <button type="button" class="product-preset-btn active" data-preset="headphones">
+                      <span class="preset-name">Wireless Headphones</span>
+                      <span class="preset-price">₹2,499</span>
+                      <span class="preset-desc">Active Noise Cancellation (Demo Item)</span>
+                    </button>
+                    <button type="button" class="product-preset-btn" data-preset="stand">
+                      <span class="preset-name">Ergonomic Laptop Stand</span>
+                      <span class="preset-price">₹1,899</span>
+                      <span class="preset-desc">Aluminum Folding Stand</span>
+                    </button>
+                    <button type="button" class="product-preset-btn" data-preset="watch">
+                      <span class="preset-name">Smart Fitness Watch</span>
+                      <span class="preset-price">₹3,999</span>
+                      <span class="preset-desc">Heart & AMOLED Display</span>
+                    </button>
+                    <button type="button" class="product-preset-btn" data-preset="books">
+                      <span class="preset-name">College Textbooks Pack</span>
+                      <span class="preset-price">₹1,450</span>
+                      <span class="preset-desc">Engineering Study Materials</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="productName">Product Name</label>
+                  <input type="text" id="productName" class="form-control" value="Wireless Headphones" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="productPrice">Product Price</label>
+                  <input type="text" id="productPrice" class="form-control" value="₹2,499" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="customerName">Customer Name</label>
+                  <input type="text" id="customerName" class="form-control" value="Mohan" placeholder="Your Name" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="deliveryAddress">Delivery Address</label>
+                  <input type="text" id="deliveryAddress" class="form-control" value="Room 304, Men's Hostel 2, College Campus, Pudukkottai" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="deliveryArea">Delivery Area / Zone</label>
+                  <select id="deliveryArea" class="form-control">
+                    <option value="College Campus, Pudukkottai" selected>College Campus, Pudukkottai (Zone A - Student Cluster)</option>
+                    <option value="North Tech Park, Sector 4">North Tech Park, Sector 4 (Zone B - Corporate Cluster)</option>
+                    <option value="City Center Main Road">City Center Main Road (Zone C - Urban Core)</option>
+                    <option value="South Residential Colony">South Residential Colony (Zone D - Suburban)</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="deliveryDate">Delivery Date</label>
+                  <input type="date" id="deliveryDate" class="form-control" />
+                </div>
+
+                <button class="btn btn-primary btn-lg" style="width: 100%; margin-top: 10px;" id="btnProceedToAvailability">
+                  Next: Set Your Availability Window →
+                </button>
+              </div>
+
+              <!-- Right: Order Preview Summary -->
+              <div>
+                <div class="glass-card">
+                  <h3 style="font-size: 1.1rem; margin-bottom: 14px;">Order Summary</h3>
+                  <div class="order-summary-box">
+                    <div class="summary-row">
+                      <span class="summary-label">Item</span>
+                      <span class="summary-value" id="previewProductName">Wireless Headphones</span>
+                    </div>
+                    <div class="summary-row">
+                      <span class="summary-label">Customer</span>
+                      <span class="summary-value" id="previewCustomerName">Mohan</span>
+                    </div>
+                    <div class="summary-row">
+                      <span class="summary-label">Zone</span>
+                      <span class="summary-value" id="previewZone">College Campus, Pudukkottai</span>
+                    </div>
+                    <div class="summary-row">
+                      <span class="summary-label">Delivery Fee</span>
+                      <span class="summary-value" style="color: #34d399;">Free (SmartSlot Optim.)</span>
+                    </div>
+                    <div class="summary-row">
+                      <span class="summary-label">Total Amount</span>
+                      <span class="summary-value" id="previewPrice">₹2,499</span>
+                    </div>
+                  </div>
+
+                  <div style="margin-top: 24px; padding: 16px; background: rgba(37, 99, 235, 0.08); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+                    <div style="display: flex; gap: 10px; align-items: flex-start;">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                      </svg>
+                      <div style="font-size: 0.84rem; color: var(--text-secondary); line-height: 1.5;">
+                        <strong style="color: var(--text-primary);">Why availability matters:</strong> Unlike traditional couriers who dump parcels at random hours, SmartSlot AI pairs your free windows with rider routes.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ========================================== -->
+          <!-- STEP 3: CUSTOMER AVAILABILITY (#availability) -->
+          <!-- ========================================== -->
+          <section id="page-availability" class="page-view">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  Step 2: When Are You Available?
+                </h2>
+                <p class="card-subtitle">Tell us your schedule so we schedule delivery around your day, not the courier's</p>
+              </div>
+            </div>
+
+            <!-- Availability Presets -->
+            <div class="availability-presets">
+              <div class="avail-card" data-preset-avail="morning">
+                <div class="avail-icon">🌅</div>
+                <div class="avail-title">Morning</div>
+                <div class="avail-time">8:00 AM – 12:00 PM</div>
+              </div>
+              <div class="avail-card" data-preset-avail="afternoon">
+                <div class="avail-icon">☀️</div>
+                <div class="avail-title">Afternoon</div>
+                <div class="avail-time">12:00 PM – 4:00 PM</div>
+              </div>
+              <div class="avail-card" data-preset-avail="evening">
+                <div class="avail-icon">🌙</div>
+                <div class="avail-title">Evening</div>
+                <div class="avail-time">4:00 PM – 8:00 PM</div>
+              </div>
+              <div class="avail-card active" data-preset-avail="custom">
+                <div class="avail-icon">⚙️</div>
+                <div class="avail-title">Custom Availability</div>
+                <div class="avail-time">4:00 PM – 7:00 PM (Default)</div>
+              </div>
+            </div>
+
+            <!-- Custom Availability Time Inputs -->
+            <div class="glass-card" style="margin-bottom: 24px;">
+              <h3 style="font-size: 1.05rem; margin-bottom: 16px;">Configure Your Daily Schedule</h3>
+              <div class="custom-time-inputs">
+                <div>
+                  <label class="form-label">
+                    <span style="color: #fca5a5;">● Unavailable Hours</span> (In College / Work / Commute)
+                  </label>
+                  <div style="display: flex; gap: 10px; align-items: center;">
+                    <select id="unavailStart" class="form-control">
+                      <option value="8">8:00 AM</option>
+                      <option value="9" selected>9:00 AM</option>
+                      <option value="10">10:00 AM</option>
+                      <option value="11">11:00 AM</option>
+                      <option value="12">12:00 PM</option>
+                    </select>
+                    <span style="color: var(--text-muted);">to</span>
+                    <select id="unavailEnd" class="form-control">
+                      <option value="13">1:00 PM</option>
+                      <option value="14">2:00 PM</option>
+                      <option value="15">3:00 PM</option>
+                      <option value="16" selected>4:00 PM</option>
+                      <option value="17">5:00 PM</option>
+                    </select>
+                  </div>
+                  <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 6px;">
+                    e.g. Attending college classes or office work
+                  </div>
+                </div>
+
+                <div>
+                  <label class="form-label">
+                    <span style="color: #6ee7b7;">● Available Handover Window</span> (At Hostel / Home)
+                  </label>
+                  <div style="display: flex; gap: 10px; align-items: center;">
+                    <select id="availStart" class="form-control">
+                      <option value="15">3:00 PM</option>
+                      <option value="16" selected>4:00 PM</option>
+                      <option value="17">5:00 PM</option>
+                      <option value="18">6:00 PM</option>
+                    </select>
+                    <span style="color: var(--text-muted);">to</span>
+                    <select id="availEnd" class="form-control">
+                      <option value="18">6:00 PM</option>
+                      <option value="19" selected>7:00 PM</option>
+                      <option value="20">8:00 PM</option>
+                      <option value="21">9:00 PM</option>
+                    </select>
+                  </div>
+                  <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 6px;">
+                    Free to receive package in person
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- VISUAL 24-HOUR / DAY TIMELINE -->
+            <div class="glass-card timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <h3 style="font-size: 1.05rem;">Your Availability Timeline</h3>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Visual 8:00 AM – 9:00 PM day schedule map</div>
+                </div>
+                <div class="timeline-legend">
+                  <div class="legend-item">
+                    <div class="legend-box unavailable"></div>
+                    <span>Unavailable</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-box available"></div>
+                    <span>Available For Delivery</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-bar-wrapper">
+                <div class="timeline-hours-labels">
+                  <span>8 AM</span>
+                  <span>10 AM</span>
+                  <span>12 PM</span>
+                  <span>2 PM</span>
+                  <span>4 PM</span>
+                  <span>6 PM</span>
+                  <span>8 PM</span>
+                  <span>9 PM</span>
+                </div>
+                <div class="timeline-visual-track" id="visualTimelineTrack">
+                  <!-- Generated via script.js -->
+                </div>
+              </div>
+
+              <div class="timeline-status-banner">
+                <div>
+                  <span style="color: var(--text-secondary);">Customer Window:</span>
+                  <strong style="color: var(--cyan-glow); margin-left: 6px;" id="timelineSummaryText">
+                    Unavailable 9 AM – 4 PM · Available 4 PM – 7 PM
+                  </strong>
+                </div>
+                <div>
+                  <button class="btn btn-sm btn-outline" id="btnRecalculateTimeline">Refresh Visuals</button>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end;">
+              <button class="btn btn-primary btn-lg" id="btnProceedToSlots">
+                Next: Select Preferred Delivery Slot →
+              </button>
+            </div>
+          </section>
+
+          <!-- ========================================== -->
+          <!-- STEP 4: SELECT DELIVERY SLOT (#slots) -->
+          <!-- ========================================== -->
+          <section id="page-slots" class="page-view">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 14 14"></polyline>
+                  </svg>
+                  Step 3: Choose Preferred Delivery Slot
+                </h2>
+                <p class="card-subtitle">
+                  Slots dynamically show real-time workload and compatibility with your schedule
+                </p>
+              </div>
+            </div>
+
+            <div style="background: rgba(37, 99, 235, 0.08); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 14px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;">
+              <div style="font-size: 0.88rem;">
+                <span style="color: var(--text-muted);">Your configured availability:</span>
+                <strong style="color: var(--cyan-glow); margin-left: 6px;" id="slotViewAvailLabel">
+                  4:00 PM – 7:00 PM
+                </strong>
+              </div>
+              <button class="btn btn-sm btn-outline" onclick="window.navigateToPage('availability')">Modify Availability</button>
+            </div>
+
+            <!-- The 8 Delivery Slots Grid -->
+            <div class="slots-grid" id="slotsGrid">
+              <!-- Dynamically populated or rendered with 8 exact slots -->
+            </div>
+
+            <div class="glass-card" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: gap: 16px;">
+              <div>
+                <div style="font-size: 0.85rem; color: var(--text-muted);">Selected Preferred Slot:</div>
+                <div style="font-size: 1.25rem; font-weight: 800; color: var(--text-primary);" id="selectedSlotDisplayText">
+                  4:00 PM – 5:00 PM (High Demand)
+                </div>
+              </div>
+              <div style="display: flex; gap: 12px;">
+                <button class="btn btn-secondary" onclick="window.navigateToPage('availability')">← Back</button>
+                <button class="btn btn-primary btn-lg" id="btnRunFeasibility">
+                  Run AI Feasibility Analysis →
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ========================================== -->
+          <!-- STEP 5: AI FEASIBILITY ANALYSIS (#analysis) -->
+          <!-- ========================================== -->
+          <section id="page-analysis" class="page-view">
+            <div class="glass-card analysis-header-card">
+              <div class="ai-pulse-scanner">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                </svg>
+              </div>
+              <h2 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 8px;">
+                SmartSlot AI is checking your delivery slot...
+              </h2>
+              <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;" id="analysisScanningText">
+                Analyzing 6 physical and spatial constraint factors for slot: <span style="color: var(--cyan-glow); font-weight: 700;" id="analysisTargetSlotName">4:00 PM – 5:00 PM</span>
+              </p>
+            </div>
+
+            <!-- The 6 Analyzed Factors -->
+            <div class="factors-grid">
+              <div class="factor-card">
+                <span class="factor-name">1. Dispatch Distance</span>
+                <span class="factor-value" id="factorDistance">7.8 km</span>
+                <div style="font-size: 0.74rem; color: var(--text-muted);">From Pudukkottai Central Hub</div>
+                <div class="factor-bar">
+                  <div class="factor-bar-fill" id="barDistance" style="width: 52%; background: #38bdf8;"></div>
+                </div>
+              </div>
+
+              <div class="factor-card">
+                <span class="factor-name">2. Traffic Congestion</span>
+                <span class="factor-value" id="factorTraffic" style="color: #fbbf24;">Medium</span>
+                <div style="font-size: 0.74rem; color: var(--text-muted);">Campus arterial corridor peak</div>
+                <div class="factor-bar">
+                  <div class="factor-bar-fill" id="barTraffic" style="width: 55%; background: #fbbf24;"></div>
+                </div>
+              </div>
+
+              <div class="factor-card">
+                <span class="factor-name">3. Delivery Load</span>
+                <span class="factor-value" id="factorLoad" style="color: #f87171;">82%</span>
+                <div style="font-size: 0.74rem; color: var(--text-muted);">Cluster parcel backlog volume</div>
+                <div class="factor-bar">
+                  <div class="factor-bar-fill" id="barLoad" style="width: 82%; background: #f87171;"></div>
+                </div>
+              </div>
+
+              <div class="factor-card">
+                <span class="factor-name">4. Rider Availability</span>
+                <span class="factor-value" id="factorRider" style="color: #fbbf24;">Medium</span>
+                <div style="font-size: 0.74rem; color: var(--text-muted);">3 couriers active in radius</div>
+                <div class="factor-bar">
+                  <div class="factor-bar-fill" id="barRider" style="width: 50%; background: #fbbf24;"></div>
+                </div>
+              </div>
+
+              <div class="factor-card">
+                <span class="factor-name">5. Area Demand</span>
+                <span class="factor-value" id="factorDemand" style="color: #f87171;">High</span>
+                <div style="font-size: 0.74rem; color: var(--text-muted);">Evening hostel parcel surge</div>
+                <div class="factor-bar">
+                  <div class="factor-bar-fill" id="barDemand" style="width: 85%; background: #f87171;"></div>
+                </div>
+              </div>
+
+              <div class="factor-card">
+                <span class="factor-name">6. Customer Availability</span>
+                <span class="factor-value" id="factorMatch" style="color: #34d399;">Matches (4–7 PM)</span>
+                <div style="font-size: 0.74rem; color: var(--text-muted);">Free window alignment</div>
+                <div class="factor-bar">
+                  <div class="factor-bar-fill" id="barMatch" style="width: 100%; background: #34d399;"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Calculated Metrics Outputs -->
+            <div class="metrics-row">
+              <div class="metric-stat-box">
+                <div class="metric-label">Slot Score</div>
+                <div class="metric-number" id="calcSlotScore">58 / 100</div>
+              </div>
+              <div class="metric-stat-box">
+                <div class="metric-label">Estimated Arrival</div>
+                <div class="metric-number" id="calcEstArrival" style="font-size: 1.35rem; margin-top: 4px;">4:45 – 5:15 PM</div>
+              </div>
+              <div class="metric-stat-box">
+                <div class="metric-label">On-Time Probability</div>
+                <div class="metric-number" id="calcOnTimeProb" style="color: #fbbf24;">68%</div>
+              </div>
+              <div class="metric-stat-box">
+                <div class="metric-label">Delay Risk</div>
+                <div class="metric-number" id="calcDelayRisk" style="color: #f87171;">High</div>
+              </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 10px;">
+              <button class="btn btn-primary btn-lg" id="btnViewRecommendation">
+                See AI Optimization & Recommendation →
+              </button>
+            </div>
+          </section>
+
+          <!-- ========================================== -->
+          <!-- STEP 6: SMART ALTERNATIVE RECOMMENDATION (#recommendation) -->
+          <!-- ========================================== -->
+          <section id="page-recommendation" class="page-view">
+            <!-- Warning Banner -->
+            <div class="recommend-alert-banner">
+              <div class="recommend-alert-icon">⚠</div>
+              <div>
+                <h3 style="font-size: 1.15rem; color: #fbbf24; margin-bottom: 2px;">
+                  Requested Slot Has High Demand
+                </h3>
+                <p style="font-size: 0.88rem; color: var(--text-secondary); margin: 0;">
+                  SmartSlot AI detected heavy congestion and delivery partner saturation during your selected window.
+                </p>
+              </div>
+            </div>
+
+            <!-- Side by Side Comparative Evaluation -->
+            <div class="recommend-comparison-grid">
+              <!-- Requested Slot -->
+              <div class="slot-eval-card requested">
+                <div style="font-size: 0.76rem; text-transform: uppercase; font-weight: 700; color: #f97316; letter-spacing: 0.05em; margin-bottom: 8px;">
+                  Your Requested Slot
+                </div>
+                <div style="font-size: 1.7rem; font-weight: 900; margin-bottom: 12px;" id="recReqSlotTime">
+                  4:00 PM – 5:00 PM
+                </div>
+                <div style="padding: 12px; background: rgba(0, 0, 0, 0.3); border-radius: var(--radius-sm); margin-bottom: 16px;">
+                  <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 4px;">Bottleneck Diagnostics:</div>
+                  <div style="font-size: 0.88rem; color: #fca5a5; line-height: 1.4;" id="recReqReason">
+                    High delivery workload (82%) and limited delivery capacity during this slot.
+                  </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem;">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-muted);">Slot Score:</span>
+                    <span style="font-weight: 700; color: #f87171;" id="recReqScore">58 / 100</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-muted);">On-Time Probability:</span>
+                    <span style="font-weight: 700; color: #fbbf24;" id="recReqProb">68%</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-muted);">Delay Risk:</span>
+                    <span style="font-weight: 700; color: #f87171;" id="recReqRisk">High (25-35m variance)</span>
+                  </div>
+                </div>
+
+                <div style="margin-top: 24px;">
+                  <button class="btn btn-outline" style="width: 100%;" id="btnKeepOriginalSlot">
+                    Keep My Original Slot (4–5 PM)
+                  </button>
+                </div>
+              </div>
+
+              <!-- AI Recommended Slot -->
+              <div class="slot-eval-card ai-recommended">
+                <span class="recommended-ribbon">AI Recommended Slot</span>
+                <div style="font-size: 0.76rem; text-transform: uppercase; font-weight: 700; color: var(--cyan-glow); letter-spacing: 0.05em; margin-bottom: 8px;">
+                  Smart AI Alternative
+                </div>
+                <div style="font-size: 1.7rem; font-weight: 900; margin-bottom: 12px; color: var(--cyan-glow);" id="recAltSlotTime">
+                  5:00 PM – 6:00 PM
+                </div>
+                <div style="padding: 12px; background: rgba(6, 182, 212, 0.1); border-radius: var(--radius-sm); border: 1px solid rgba(6, 182, 212, 0.2); margin-bottom: 16px;">
+                  <div style="font-size: 0.78rem; color: var(--cyan-glow); margin-bottom: 4px;">Optimization Advantage:</div>
+                  <div style="font-size: 0.88rem; color: #e0f2fe; line-height: 1.4;" id="recAltReason">
+                    Lower delivery workload and better rider availability. Fits smoothly inside your 4:00 PM – 7:00 PM window.
+                  </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem;">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-muted);">Slot Score:</span>
+                    <span style="font-weight: 700; color: #34d399;" id="recAltScore">94 / 100</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-muted);">On-Time Probability:</span>
+                    <span style="font-weight: 700; color: #34d399;" id="recAltProb">96%</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-muted);">Delay Risk:</span>
+                    <span style="font-weight: 700; color: #34d399;" id="recAltRisk">Low (&lt; 5m variance)</span>
+                  </div>
+                </div>
+
+                <div style="margin-top: 24px;">
+                  <button class="btn btn-success btn-lg" style="width: 100%;" id="btnAcceptRecommendedSlot">
+                    ✓ Accept Recommended Slot (5–6 PM)
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align: center;">
+              <button class="btn btn-outline btn-sm" onclick="window.navigateToPage('slots')">
+                Explore Other Slots
+              </button>
+            </div>
+          </section>
+
+          <!-- ========================================== -->
+          <!-- STEP 7: SLOT CONFIRMATION (#confirmation) -->
+          <!-- ========================================== -->
+          <section id="page-confirmation" class="page-view">
+            <div class="confirmation-container">
+              <div class="confirmation-card">
+                <div class="confirmed-badge-circle">✓</div>
+                <h2 class="confirmation-title">DELIVERY SLOT CONFIRMED</h2>
+                <p class="confirmation-subtitle">
+                  SmartSlot AI has finalized your customized courier reservation.
+                </p>
+
+                <div class="confirmed-details-list">
+                  <div class="detail-item">
+                    <span class="detail-label">Product</span>
+                    <span class="detail-value" id="confProduct">Wireless Headphones</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">Date</span>
+                    <span class="detail-value" id="confDate">Tomorrow</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">Confirmed Slot</span>
+                    <span class="detail-value" style="color: var(--cyan-glow);" id="confSlot">5:00 PM – 6:00 PM</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">Estimated Arrival</span>
+                    <span class="detail-value" id="confEta">5:20 PM – 5:45 PM</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">On-Time Probability</span>
+                    <span class="detail-value" style="color: #34d399;" id="confProb">96%</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">Status</span>
+                    <span class="detail-value" style="color: #38bdf8;" id="confStatus">ON TRACK</span>
+                  </div>
+                  <div class="detail-item full-width">
+                    <span class="detail-label">Delivery Address & Context</span>
+                    <span class="detail-value" style="font-size: 0.92rem; font-weight: 500;" id="confAddress">
+                      Room 304, Men's Hostel 2, College Campus, Pudukkottai · Customer Available 4 PM – 7 PM
+                    </span>
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+                  <button class="btn btn-primary btn-lg" id="btnTrackConfirmedDelivery">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="1" y="3" width="15" height="13"></rect>
+                      <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                      <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                      <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    </svg>
+                    Track Delivery
+                  </button>
+                  <button class="btn btn-secondary btn-lg" onclick="window.navigateToPage('dashboard')">
+                    View in Dashboard
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ========================================== -->
+          <!-- STEP 8: BASIC DELIVERY TRACKING (#tracking) -->
+          <!-- ========================================== -->
+          <section id="page-tracking" class="page-view">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  Live Delivery Tracking
+                </h2>
+                <p class="card-subtitle">Real-time simulated dispatch updates for your confirmed slot</p>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-outline btn-sm" id="btnAdvanceTrackingStep">
+                  ⏩ Advance Stage (Demo)
+                </button>
+              </div>
+            </div>
+
+            <div class="tracking-grid">
+              <!-- Left: Delivery Timeline Stepper -->
+              <div class="glass-card">
+                <h3 style="font-size: 1.1rem; margin-bottom: 20px;">Milestone Progress</h3>
+                
+                <ul class="tracking-stepper" id="trackingStepper">
+                  <li class="step-item completed" data-step="1">
+                    <div class="step-marker">✓</div>
+                    <div class="step-content">
+                      <div class="step-content-title">Order Confirmed</div>
+                      <div class="step-content-time">12:15 PM · System verified</div>
+                    </div>
+                  </li>
+                  <li class="step-item completed" data-step="2">
+                    <div class="step-marker">✓</div>
+                    <div class="step-content">
+                      <div class="step-content-title">Packed</div>
+                      <div class="step-content-time">01:40 PM · Pudukkottai Fulfillment Hub</div>
+                    </div>
+                  </li>
+                  <li class="step-item completed" data-step="3">
+                    <div class="step-marker">✓</div>
+                    <div class="step-content">
+                      <div class="step-content-title">Delivery Partner Assigned</div>
+                      <div class="step-content-time">03:30 PM · Partner matched to 5–6 PM slot</div>
+                    </div>
+                  </li>
+                  <li class="step-item active" data-step="4">
+                    <div class="step-marker">●</div>
+                    <div class="step-content">
+                      <div class="step-content-title">Out for Delivery</div>
+                      <div class="step-content-time">In transit · Approaching campus corridor</div>
+                    </div>
+                  </li>
+                  <li class="step-item" data-step="5">
+                    <div class="step-marker">○</div>
+                    <div class="step-content">
+                      <div class="step-content-title">Delivered</div>
+                      <div class="step-content-time">Pending in-person handover</div>
+                    </div>
+                  </li>
+                </ul>
+
+                <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: var(--radius-md); padding: 14px 18px; display: flex; align-items: center; justify-content: space-between;">
+                  <div>
+                    <div style="font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase;">Customer Guardrail</div>
+                    <div style="font-size: 0.92rem; color: #a7f3d0; font-weight: 600;">
+                      Customer Available: 4:00 PM – 7:00 PM
+                    </div>
+                  </div>
+                  <span style="font-size: 0.78rem; background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 4px 10px; border-radius: 99px; font-weight: 700;">
+                    Zero Schedule Conflict
+                  </span>
+                </div>
+              </div>
+
+              <!-- Right: Rider & Live Metric Card -->
+              <div>
+                <div class="glass-card">
+                  <h3 style="font-size: 1.1rem; margin-bottom: 16px;">Assigned Delivery Partner</h3>
+
+                  <div class="rider-card">
+                    <div class="rider-avatar">🛵</div>
+                    <div style="flex: 1;">
+                      <div style="font-weight: 800; font-size: 1.1rem; color: var(--text-primary);">Arun</div>
+                      <div style="font-size: 0.78rem; color: var(--text-muted);">ID: ARUN-4092 · Electric Scooter</div>
+                      <div style="display: flex; gap: 8px; margin-top: 4px; font-size: 0.78rem;">
+                        <span style="color: #fbbf24; font-weight: 700;">★ 4.9 Rating</span>
+                        <span>·</span>
+                        <span style="color: #34d399;">98.4% On-Time</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+                    <div style="background: rgba(9, 15, 28, 0.7); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 14px;">
+                      <div style="font-size: 0.74rem; color: var(--text-muted);">DISTANCE REMAINING</div>
+                      <div style="font-size: 1.4rem; font-weight: 800; color: var(--cyan-glow);" id="trackDistRemaining">2.8 km</div>
+                    </div>
+
+                    <div style="background: rgba(9, 15, 28, 0.7); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 14px;">
+                      <div style="font-size: 0.74rem; color: var(--text-muted);">ESTIMATED ARRIVAL</div>
+                      <div style="font-size: 1.4rem; font-weight: 800; color: #34d399;" id="trackEtaTime">5:32 PM</div>
+                    </div>
+
+                    <div style="background: rgba(9, 15, 28, 0.7); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 14px;">
+                      <div style="font-size: 0.74rem; color: var(--text-muted);">DELIVERY SLOT</div>
+                      <div style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary);" id="trackSlotWindow">5–6 PM</div>
+                    </div>
+
+                    <div style="background: rgba(9, 15, 28, 0.7); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 14px;">
+                      <div style="font-size: 0.74rem; color: var(--text-muted);">DISPATCH STATUS</div>
+                      <div style="font-size: 1.15rem; font-weight: 800; color: #38bdf8;" id="trackStatusBadge">ON TRACK</div>
+                    </div>
+                  </div>
+
+                  <div style="border-top: 1px solid var(--border-subtle); padding-top: 16px; font-size: 0.82rem; color: var(--text-secondary);">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                      <span>Item:</span>
+                      <strong style="color: var(--text-primary);" id="trackProductName">Wireless Headphones</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                      <span>Drop location:</span>
+                      <span id="trackDropLoc">College Campus, Pudukkottai</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ========================================== -->
+          <!-- STEP 9: DASHBOARD (#dashboard) -->
+          <!-- ========================================== -->
+          <section id="page-dashboard" class="page-view">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                  </svg>
+                  Operational Intelligence Dashboard
+                </h2>
+                <p class="card-subtitle">Real-time logistics load balancing and slot performance metrics</p>
+              </div>
+              <div>
+                <button class="btn btn-outline btn-sm" id="btnRefreshDashboard">⟳ Refresh Analytics</button>
+              </div>
+            </div>
+
+            <!-- 5 KPI Cards -->
+            <div class="stats-kpi-grid">
+              <div class="kpi-card">
+                <span class="kpi-title">Total Orders</span>
+                <span class="kpi-value" id="kpiTotalOrders">128</span>
+                <span class="kpi-change positive">↑ +14 today</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-title">Confirmed Slots</span>
+                <span class="kpi-value" id="kpiConfirmedSlots">94</span>
+                <span class="kpi-change positive">73.4% auto-scheduled</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-title">On-Time Rate</span>
+                <span class="kpi-value" id="kpiOnTimeRate">91%</span>
+                <span class="kpi-change positive">↑ vs 68% traditional</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-title">Active Deliveries</span>
+                <span class="kpi-value" id="kpiActiveDeliveries">18</span>
+                <span class="kpi-change">Across 4 zones</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-title">High Demand Slots</span>
+                <span class="kpi-value" id="kpiHighDemandSlots" style="color: #fb923c;">3</span>
+                <span class="kpi-change warning">Load balancing active</span>
+              </div>
+            </div>
+
+            <!-- Top Row Charts: Demand by Hour & Slot Utilization -->
+            <div class="charts-grid-top">
+              <div class="glass-card">
+                <div class="card-header" style="margin-bottom: 12px;">
+                  <div>
+                    <h3 style="font-size: 1.05rem;">1. Delivery Demand by Hour</h3>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">Courier volume across daily dispatch intervals</div>
+                  </div>
+                </div>
+                <div class="chart-wrapper">
+                  <canvas id="demandByHourChart"></canvas>
+                </div>
+              </div>
+
+              <div class="glass-card">
+                <div class="card-header" style="margin-bottom: 12px;">
+                  <div>
+                    <h3 style="font-size: 1.05rem;">2. Slot Utilization</h3>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">Capacity distribution ratio</div>
+                  </div>
+                </div>
+                <div class="chart-wrapper-square">
+                  <canvas id="slotUtilizationChart"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Row Chart: On-Time Rate Comparison -->
+            <div class="glass-card" style="margin-bottom: 28px;">
+              <div class="card-header" style="margin-bottom: 12px;">
+                <div>
+                  <h3 style="font-size: 1.05rem;">3. On-Time Delivery Rate</h3>
+                  <div style="font-size: 0.78rem; color: var(--text-muted);">Traditional Courier Model vs. SmartSlot AI Optimization</div>
+                </div>
+              </div>
+              <div style="position: relative; height: 180px; width: 100%;">
+                <canvas id="onTimeRateChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Recent Orders Table -->
+            <div class="glass-card">
+              <div class="card-header">
+                <div>
+                  <h3 style="font-size: 1.05rem;">Recent Optimized Deliveries</h3>
+                  <div style="font-size: 0.78rem; color: var(--text-muted);">Synchronized in real-time with localStorage</div>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="custom-table">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Customer</th>
+                      <th>Product</th>
+                      <th>Customer Availability</th>
+                      <th>Confirmed Slot</th>
+                      <th>On-Time Prob</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ordersTableBody">
+                    <!-- Populated via script.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- ========================================== -->
+          <!-- MY ORDERS HISTORY TAB (#history) -->
+          <!-- ========================================== -->
+          <section id="page-history" class="page-view">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">My Orders & Slot Reservations</h2>
+                <p class="card-subtitle">Manage and inspect your schedule-aligned delivery bookings</p>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="window.navigateToPage('order')">+ New Order</button>
+            </div>
+
+            <div class="glass-card">
+              <div class="table-responsive">
+                <table class="custom-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Product</th>
+                      <th>Destination</th>
+                      <th>Your Available Hours</th>
+                      <th>Scheduled Slot</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="myOrdersTableBody">
+                    <!-- Populated via script.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </main>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- STEP 10: LIVE HACKATHON DEMO MODAL OVERLAY -->
+    <!-- ========================================== -->
+    <div class="live-demo-modal" id="liveDemoModal">
+      <div class="demo-modal-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #22d3ee; box-shadow: 0 0 10px #22d3ee; animation: pulse-active 1.5s infinite;"></span>
+            <span style="font-weight: 800; font-size: 1.1rem; color: var(--text-primary);">
+              LIVE HACKATHON DEMO — MOHAN'S COLLEGE SCENARIO
+            </span>
+          </div>
+          <button class="btn btn-outline btn-sm" id="btnCloseDemoModal" style="padding: 4px 10px;">✕ Exit Demo</button>
+        </div>
+
+        <!-- 6 Step Progress Bubbles -->
+        <div class="demo-stepper-progress">
+          <div class="demo-step-bubble current" id="demoStep1">1</div>
+          <div class="demo-step-bubble" id="demoStep2">2</div>
+          <div class="demo-step-bubble" id="demoStep3">3</div>
+          <div class="demo-step-bubble" id="demoStep4">4</div>
+          <div class="demo-step-bubble" id="demoStep5">5</div>
+          <div class="demo-step-bubble" id="demoStep6">6</div>
+        </div>
+
+        <!-- Live Step Narration Box -->
+        <div class="demo-narration-box">
+          <div class="demo-narration-tag" id="demoNarrationTag">STEP 1 OF 6 · CUSTOMER ORDER INITIALIZATION</div>
+          <div class="demo-narration-text" id="demoNarrationText">
+            Mohan orders Wireless Headphones at 12:15 PM from college campus...
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="font-size: 0.82rem; color: var(--text-muted);" id="demoTimerStatus">
+            Auto-progressing scenario (Approx. 40s total)
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn btn-secondary btn-sm" id="btnPauseDemo">⏸ Pause</button>
+            <button class="btn btn-primary btn-sm" id="btnNextDemoStep">Next Step →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script loading -->
+    <script src="./script.js"></script>
+  </body>
+</html>
